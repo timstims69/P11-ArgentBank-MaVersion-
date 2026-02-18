@@ -17,7 +17,7 @@ export default function Navbar() {
       </Link>
       <div>
         {/* Lien vers la page de connexion */}
-        <Link className="main-nav-item" to="/login">
+        <Link className="main-nav-item" to="/sign-in">
           <i className="fa fa-user-circle"></i>
           Sign In
         </Link>

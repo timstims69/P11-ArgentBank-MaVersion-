@@ -1,14 +1,12 @@
 // Fichier : src/Pages/SignIn.tsx
 
 // On importe les composants qu'on a déjà faits (Navbar et Footer)
-import Navbar from "../Components/Navbar"; // Vérifie le chemin "../components"
-import Footer from "../Components/Footer";
+// import Navbar from "../Components/Navbar"; // Vérifie le chemin "../components"
+// import Footer from "../Components/Footer";
 
 export default function SignIn() {
   return (
     <>
-      <Navbar />
-
       {/* 👇 DÉBUT DU CODE VENANT DE SIGN-IN.HTML 👇 */}
       <main className="main bg-dark">
         <section className="sign-in-content">
@@ -35,8 +33,6 @@ export default function SignIn() {
         </section>
       </main>
       {/* 👆 FIN DU CODE VENANT DE SIGN-IN.HTML 👆 */}
-
-      <Footer />
     </>
   );
 }

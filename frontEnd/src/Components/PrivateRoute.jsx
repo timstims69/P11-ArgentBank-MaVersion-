@@ -10,7 +10,7 @@ const PrivateRoute = ({ children }) => {
 
   if (!isAuthenticated) {
     // Si pas connecté, redirection vers Login
-    return <Navigate to="/login" />;
+    return <Navigate to="/sign-in" />;
   }
 
   // Si connecté, on affiche la page protégée (User)
