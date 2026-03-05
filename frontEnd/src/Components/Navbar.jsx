@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 // Assure-toi que le chemin vers ton image est correct
 // Si ton image est directement dans 'src/assets', c'est "../assets/..."
-import logo from "../assets/argentBankLogo.png";
+import logo from "../assets/img/argentBankLogo.png";
 
 export default function Navbar() {
   return (

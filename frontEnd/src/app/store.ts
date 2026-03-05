@@ -1,6 +1,6 @@
 // Fichier : src/app/store.ts
 import { configureStore } from "@reduxjs/toolkit";
-import authReducer from "../Features/auth/authSlice"; // 👈 On importe le reducer de ton authSlice
+import authReducer from "../Features/auth/authSlice.Js"; // 👈 On importe le reducer de ton authSlice
 
 const store = configureStore({
   reducer: {

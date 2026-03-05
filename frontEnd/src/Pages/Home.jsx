@@ -4,9 +4,9 @@ import React from "react";
 import FeatureItem from "../Components/FeatureItem";
 
 // 👇 IMPORTANT : On importe les images (vérifie que le chemin correspond à ton dossier assets)
-import iconChat from "../assets/icon-chat.png";
-import iconMoney from "../assets/icon-money.png";
-import iconSecurity from "../assets/icon-security.png";
+import iconChat from "../assets/img/icon-chat.png";
+import iconMoney from "../assets/img/icon-money.png";
+import iconSecurity from "../assets/img/icon-security.png";
 
 // Les données sont externalisées dans un tableau
 const features = [
