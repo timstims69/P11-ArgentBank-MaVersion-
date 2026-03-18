@@ -1,0 +1,60 @@
+C'est un excellent début de notes ! Tu as tout à fait raison : en React, dès que tu vois un mot qui commence par **"use"**, c'est un **Hook**.
+
+Imagine que ton composant est une petite machine isolée. Les **Hooks**, ce sont des "crochets" (d'où le nom *hook*) que tu lances pour attraper des fonctionnalités qui sont à l'extérieur de ta machine (comme la mémoire de React ou le coffre-fort de Redux).
+
+Voici tes notes complétées pour ton lexique de développeur :
+
+---
+
+### 📦 1. La famille React (Mémoire locale)
+
+#### **`useState`**
+
+* **Analogie :** Le **Post-it**.
+* **C'est quoi ?** C'est la mémoire à court terme de ton composant.
+* **À quoi ça sert ici ?** Dans ta page Profile, tu l'utilises probablement pour savoir si tu dois afficher le nom normalement ou afficher le formulaire d'édition (ex: `const [isEditing, setIsEditing] = useState(false)`).
+* **Particularité :** Si tu rafraîchis la page (F5), le Post-it est jeté à la poubelle.
+
+#### **`useEffect`**
+
+* **Analogie :** Le **Vigile** ou le **Déclencheur automatique**.
+* **C'est quoi ?** C'est une fonction qui "surveille" ton composant et agit quand quelque chose change (ou quand le composant apparaît à l'écran).
+* **À quoi ça sert ici ?** Dès que la page Profile s'affiche, le `useEffect` se déclenche pour dire : *"Hé ! On vient d'arriver sur le profil, lance tout de suite la demande à l'API pour récupérer le nom de l'utilisateur !"*.
+
+---
+
+### 🏦 2. La famille Redux (Le Coffre-fort Global)
+
+#### **`useSelector`** (Importé de `react-redux`)
+
+* **Analogie :** Le **Périscope**.
+* **C'est quoi ?** C'est ton outil de lecture pour le Store Global.
+* **À quoi ça sert ici ?** Tu l'utilises pour aller piocher des infos dans Redux sans rien modifier. Par exemple : *"Va voir dans le département 'auth' et ramène-moi le `firstName` de l'utilisateur pour que je l'affiche"*.
+
+#### **`useDispatch`** (Importé de `react-redux`)
+
+* **Analogie :** Le **Talkie-Walkie** (ou le lanceur d'ordres).
+* **C'est quoi ?** C'est le seul moyen d'envoyer une instruction aux Reducers.
+* **À quoi ça sert ici ?** Tu l'utilises pour "expédier" ton `fetchProfileThunk`. Sans `dispatch`, ton Thunk reste une simple fonction qui dort sur ton disque dur ; avec `dispatch`, elle devient une mission active.
+
+---
+
+### 🛠️ Résumé visuel pour tes notes
+
+| Hook | Origine | Rôle en une phrase |
+| --- | --- | --- |
+| **`useState`** | React | Gère une variable locale (ex: ouvrir/fermer le formulaire). |
+| **`useEffect`** | React | Déclenche une action (ex: charger les données au démarrage). |
+| **`useSelector`** | Redux | **Lit** une info dans le Store global (ex: "Quel est mon nom ?"). |
+| **`useDispatch`** | Redux | **Envoie** un ordre au Store (ex: "Connecte-moi !" ou "Change mon nom !"). |
+
+---
+
+### 💡 Un petit détail technique pour briller en soutenance :
+
+Tu as importé `AccountCard` et `EditUserForm`. Ce sont des **Composants**.
+
+* `AccountCard` est probablement une simple "boîte" qui affiche tes soldes (Checking, Savings).
+* `EditUserForm` est la partie complexe où l'utilisateur va taper son nouveau pseudo.
+
+**Est-ce que tu veux qu'on regarde comment ces deux-là communiquent avec les "Hooks" qu'on vient de voir ?** On pourrait par exemple décortiquer ton `useEffect` pour voir comment il lance la mission !
