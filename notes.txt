@@ -58,3 +58,5 @@ Tu as importé `AccountCard` et `EditUserForm`. Ce sont des **Composants**.
 * `EditUserForm` est la partie complexe où l'utilisateur va taper son nouveau pseudo.
 
 **Est-ce que tu veux qu'on regarde comment ces deux-là communiquent avec les "Hooks" qu'on vient de voir ?** On pourrait par exemple décortiquer ton `useEffect` pour voir comment il lance la mission !
+
+
