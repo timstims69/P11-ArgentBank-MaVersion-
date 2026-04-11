@@ -1,12 +1,12 @@
 import React from "react";
 import AppRouter from "./router/AppRouter"; // ✅ C'est lui qui gère Home maintenant
-import Navbar from "./Components/Navbar";
-import Footer from "./Components/Footer";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function App() {
   return (
     <>
-      <Navbar />
+      <Header />
       <AppRouter />
       <Footer />
     </>

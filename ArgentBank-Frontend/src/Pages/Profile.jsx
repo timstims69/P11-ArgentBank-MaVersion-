@@ -33,22 +33,23 @@ const accounts = [
  * - Affiche la liste des comptes bancaires
  */
 function Profile() {
-  const [isEditing, setIsEditing] = useState(false);
-  const { user, token } = useSelector((state) => state.auth);
+  const [isEditing, setIsEditing] = useState(false); // state local et non pas state global
+  const { user, token } = useSelector((state) => state.auth); // par contre ici sdtate global
   const dispatch = useDispatch();
 
   // Si on a un token mais pas de user (ex: rafraîchissement de page),
   // on re-fetch le profil
   useEffect(() => {
     if (token && !user) {
+      // si on as un token mais pas de user demande a fetchProfileThunk en lui envoyant le token
       dispatch(fetchProfileThunk(token));
     }
-  }, [token, user, dispatch]);
+  }, [token, user, dispatch]); // permet qu'a chaque fois que token ou username change, useEffect sera déclenché
 
   return (
     <main className="main bg-dark">
       <div className="header">
-        {isEditing ? (
+        {isEditing ? ( // jsute un state qui vérif si j'edite ou pas
           <>
             <h1>Welcome back</h1>
             <EditUserForm onCancel={() => setIsEditing(false)} />
@@ -58,7 +59,8 @@ function Profile() {
             <h1>
               Welcome back
               <br />
-              {user?.firstName} {user?.lastName}!
+              {user?.firstName} {user?.lastName}{" "}
+              {/* "?" veut dire : verifie si user existe et si oui affiche son prenom et nom, sinon affiche rien */}
             </h1>
             <button className="edit-button" onClick={() => setIsEditing(true)}>
               Edit Name

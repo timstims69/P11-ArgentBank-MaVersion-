@@ -9,16 +9,24 @@ import { loginThunk } from "../features/auth/authSlice";
  * - Redirige vers /profile en cas de succès
  * - Affiche un message d'erreur en cas d'échec
  */
+
+// Yaakov matte moi ça: ici c'est entre crocher parceque c'est une décomposition de tableau, c'est pour
+// extratirrae rapidemant les données sinon faut tout déclarer séparement que emaiol et setEmail= usestate
 function SignIn() {
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(""); //email c'est la variable qui contient l'email, setEmail change la variable email,
+  // MAI useState("") ici ? je sais pas :) je sais que c'est vide pour qu y'ai une valeure initiale vide, pas de valeure de base faut que l'utilsateur rentre son mail.
   const [password, setPassword] = useState("");
+  // Remember me peut etre seulement V ou F (Donc ici false par défaut), setRememberMe la change
   const [rememberMe, setRememberMe] = useState(false);
 
   // attention yaakov les deux sont des hooks,
-  const dispatch = useDispatch();
-  const navigate = useNavigate(); // si connecté, navigue à page profile
+  const dispatch = useDispatch(); // remarque biens que je dois attribuer useDispatch a une variable que j'utiliserais ensuite
+  const navigate = useNavigate(); // j'asisgne useNavigte a une varible pour bouger de page, (voir la ligne 33)
   const { isAuthenticated, error, isLoading } = useSelector(
-    (state) => state.auth,
+    // le useSelector est un hook qui va chercher dans le state, que vas t'il chercher dans le state ?
+    // Il va chercher tout ce qui est en "parametre",
+
+    (state) => state.auth, // ou je vais  chercher ce qui est en parametre ? dans le state, dans authslice
   );
 
   // Redirection automatique si déjà connecté
@@ -31,8 +39,10 @@ function SignIn() {
   }, [isAuthenticated, navigate]); // ici c'est des parametres, ils sont al a fin ne cherche aps a comprendre, on met isAutenticated pour pouvoir verif si autorisé ou pas , et navigate pour pouvoir navigue, oui je sais c'est c'est logique mais sans ça le code peut pas naviguer
 
   const handleSubmit = (e) => {
+    // e ici veut dire event, c'est un objet qui est le kéli du formulaire
     // on gere l'evenemlent du click sur le bouton de co'
-    e.preventDefault();
+    e.preventDefault(); //preventdefault empeche le comportement par défaut du formulaire qui fait recharger la page pour des raison que j'ignore,
+    // en tout cas nous on veut juste envoyer un formulaire
     dispatch(loginThunk({ email, password }));
   };
 
@@ -45,12 +55,13 @@ function SignIn() {
           <div className="input-wrapper">
             <label htmlFor="username">Username</label>
             <input
+              vb
               type="text"
               id="username"
               value={email}
               onChange={(e) =>
                 setEmail(e.target.value)
-              } /* le e entre parenthese ici est l'Event */
+              } /* des que tu vois un event mes a jour la valeure dde setEmail */
               autoComplete="email"
             />
           </div>

@@ -2,7 +2,7 @@
 // le stocke dans le state global (Redux)
 import * as api from "../../services/api";
 // 1. On sépare les imports : Les vraies fonctions d'un côté, les Types de l'autre
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import axios from "axios";
 // ici c'est le initial state, il reste le même sur toute l'appmli, et je peut l'atteindre de partout
@@ -32,7 +32,7 @@ export const loginThunk = createAsyncThunk(
       // La constant du nom de {token} RECOIS la réponse de l'api,
       //  si je lui donne le bon mdp et passwrd
       // du coup maintenant j'ai lme token dans ma constante,
-      const { token } = await api.loginUser(email, password);
+      const { token } = await api.loginUser(email, password); //await et un envoi de la demande, avec le email et passwrd dedans, et on attend al réponse
       // (token et entre grochets car il est DECOMPOSE, le code et epluche et garde uniquement la partie voulue)
 
       // 2. Maintenant que j'ai le token, je récup le profil utilisateur
@@ -76,7 +76,7 @@ export const fetchProfileThunk = createAsyncThunk(
 
 export const updateUsernameThunk = createAsyncThunk(
   "auth/updateUsername",
-
+  // ici userName est une variable qui est notre nouveau nom de profil qu'on a défini dans editUserForm.jsx Ligne 11,
   async ({ token, userName }, { rejectWithValue }) => {
     try {
       const updatedProfile = await api.updateUserProfile(token, userName);
@@ -110,16 +110,17 @@ const authSlice = createSlice({
     },
   },
 
+  // Ici c'est un réducer pour fonctions asynchrones (les thunks)
   extraReducers: (builder) => {
     // ---- LOGIN ----
 
-    builder
+    builder // Permet de mettre ensemble plusieur cas d'utilisations
 
-      //Addcase ?
+      //Addcase gère plusieures étapes de fonctions asynchrone
       .addCase(loginThunk.pending, (state) => {
         state.isLoading = true;
-
         state.error = null;
+        // Quand loginThunk est pending alors prend le state et met le en loading true
       })
 
       .addCase(loginThunk.fulfilled, (state, action) => {
@@ -130,18 +131,21 @@ const authSlice = createSlice({
         state.isAuthenticated = true;
 
         localStorage.setItem("token", action.payload);
+        // quand loginThunk est fullfilled alors prend le state et met loading en false, puis met le token en paylaod
       })
 
       .addCase(loginThunk.rejected, (state, action) => {
         state.isLoading = false;
 
         state.error = action.payload;
+        // quand loginThunk est rejected alors prend le state et met loading en false, puis met l'erreur en payload
       });
 
     // ---- FETCH PROFILE ----
 
     builder
-
+      // Pour bein comprendre le fonctionnement de tout ces addcase n'oublie pas de regarder la fonction qu'on met dedans
+      // je met ça en note parcque je n'arrivais pas a comprendre cette partie a cause de ça avant
       .addCase(fetchProfileThunk.pending, (state) => {
         state.isLoading = true;
       })

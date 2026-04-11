@@ -8,14 +8,15 @@ import { useSelector } from "react-redux";
  * @param {ReactNode} children - composant enfant à rendre si authentifié
  */
 function PrivateRoute({ children }) {
+  // children ici représente la balise qui est enfant a private route, regarde AppRouter ligne 21
   const { isAuthenticated, token } = useSelector((state) => state.auth);
-
+  // useSelector va récupere dans le state,  isAuthenticated et token poru qu'on puisse les mettre dans le if juset en dessous
   // Si pas de token ni d'authentification, on redirige vers le login
   if (!isAuthenticated && !token) {
     return <Navigate to="/sign-in" replace />;
   }
 
-  return children;
+  return children; // Si authentifié, on rend le composant enfant (ex: Profile)
 }
 
 export default PrivateRoute;
